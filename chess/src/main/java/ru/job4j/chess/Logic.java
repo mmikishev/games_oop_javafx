@@ -20,14 +20,15 @@ public final class Logic {
         figures[index] = figures[index].copy(dest);
     }
 
-    private void free(Cell[] steps) throws OccupiedCellException {
+    private boolean free(Cell[] steps) throws OccupiedCellException {
         for (Figure figure : figures) {
             for (Cell step : steps) {
-                if (figure.position().equals(step)) {
-                    throw new OccupiedCellException();
+                if (figure != null && figure.position().equals(step)) {
+                    throw new OccupiedCellException("Path is not free.");
                 }
             }
         }
+        return true;
     }
 
     public void clean() {
@@ -42,6 +43,6 @@ public final class Logic {
                 return index;
             }
         }
-        throw new FigureNotFoundException();
+        throw new FigureNotFoundException("There is no figure at cell.");
     }
 }
