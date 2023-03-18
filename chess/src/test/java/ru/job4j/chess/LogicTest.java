@@ -37,7 +37,7 @@ public class LogicTest {
         ImpossibleMoveException exception = assertThrows(ImpossibleMoveException.class,  () -> {
             logic.move(Cell.C1, Cell.C2);
         });
-        assertThat(exception.getMessage()).isEqualTo("The user moves a piece against the rules of chess.");
+        assertThat(exception.getMessage()).isEqualTo("move against the rules.");
     }
 
 }
