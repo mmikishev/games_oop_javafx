@@ -24,6 +24,8 @@ public class LogicTest {
     public void whenD2FigureNotFoundAtC1()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        logic.add(new BishopBlack(Cell.D2));
         OccupiedCellException exception = assertThrows(OccupiedCellException.class,  () -> {
             logic.move(Cell.C1, Cell.H6);
         });
@@ -34,10 +36,11 @@ public class LogicTest {
     public void whenC1ToC2IsImpossibleMove()
             throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
         ImpossibleMoveException exception = assertThrows(ImpossibleMoveException.class,  () -> {
             logic.move(Cell.C1, Cell.C2);
         });
-        assertThat(exception.getMessage()).isEqualTo("move against the rules.");
+        assertThat(exception.getMessage()).isEqualTo("Could not move by diagonal from C1 to C2");
     }
 
 }
